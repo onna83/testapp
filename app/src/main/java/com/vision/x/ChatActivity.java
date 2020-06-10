@@ -153,12 +153,13 @@ public class ChatActivity extends AppCompatActivity {
             if(!mediaURIList.isEmpty()){
                 for(String mURI:mediaURIList){
                     String mediaID=newMessage.child("media").push().getKey();
-                    final StorageReference path =FirebaseStorage.getInstance().getReference().child("chat").child(chatID).child(msgID).child(mediaID);
-                    UploadTask uploadTask = path.putFile(Uri.parse(mURI));
+                    mediaIDs.add(mediaID);
+                    final StorageReference filePath =FirebaseStorage.getInstance().getReference().child("chat").child(chatID).child(msgID).child(mediaID);
+                    UploadTask uploadTask = filePath.putFile(Uri.parse(mURI));
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            path.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     newMessageMap.put("/media/"+ mediaIDs.get(mediaIterator)+"/",uri.toString());
