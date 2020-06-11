@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_circle_white"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_navigate_next_black_24dp"
             android:tint="@color/primaryColor"
             android:elevation="3dp"
