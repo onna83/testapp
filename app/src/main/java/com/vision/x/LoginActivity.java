@@ -37,15 +37,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
-        CheckLogIn();
+        CheckLogIn();   //Check if user already logged in
         pNumber = findViewById(R.id.PhoneNumber);
         code = findViewById(R.id.Code);
-        Button verify = findViewById(R.id.Verify);
+        final Button verify = findViewById(R.id.Verify);
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(verification_id!=null){
-                    VerifyPhoneNumberWithCode();
+                    VerifyWithCode();
                 }
                 else {
                     startPhoneNumberVerification();
@@ -56,44 +56,43 @@ public class LoginActivity extends AppCompatActivity {
         Callback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                signInWithPhoneAuthCredentials(phoneAuthCredential);
+                LogInWithPhoneCredentials(phoneAuthCredential);
             }
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) { }
 
+            //Saving received code
             @Override
             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(verificationId, forceResendingToken);
                 verification_id = verificationId;
+                verify.setText("Verify");
             }
         };
     }
 
-    private void VerifyPhoneNumberWithCode(){
-        PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verification_id, code.getText().toString());
-        signInWithPhoneAuthCredentials(credential);
-    }
 
 
-    private void signInWithPhoneAuthCredentials(PhoneAuthCredential phoneAuthCredential) {
+
+    private void LogInWithPhoneCredentials(PhoneAuthCredential phoneAuthCredential) {
         FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if(user !=null){
-                        final DatabaseReference UserDB= FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid());
+                        final DatabaseReference UserDB= FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()); //get current user uid from DB
                         UserDB.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(!dataSnapshot.exists()){
-                                    Map<String, Object> usrMap = new HashMap<>();
+                                    Map<String, Object> usrMap = new HashMap<>(); //saving user info against userId in database
                                     usrMap.put("name",user.getPhoneNumber());
                                     usrMap.put("phone",user.getPhoneNumber());
-                                    UserDB.updateChildren(usrMap);
+                                    UserDB.updateChildren(usrMap);//update database info under user tree
                                 }
-                                CheckLogIn();
+                                CheckLogIn(); //Check if user loggedIn
                             }
 
                             @Override
@@ -107,13 +106,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //Check if user already logged in
     private void CheckLogIn() {
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
-            startActivity(new Intent(getApplicationContext(), MainHomeScreenActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainHomeScreenActivity.class)); //Go to home screen activity
             finish();
         }
     }
+
+
+    private void VerifyWithCode(){
+        PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verification_id, code.getText().toString());
+        LogInWithPhoneCredentials(credential);
+    }
+
 
     private void startPhoneNumberVerification() {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(pNumber.getText().toString(), 60, TimeUnit.SECONDS, this, Callback);

@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MainHomeScreenActivity extends AppCompatActivity {
-    private RecyclerView Chat_List;
+    private RecyclerView Chat_List;  //All chats appear here using this recycler view
     private RecyclerView.Adapter Chat_List_Adapter;
     private RecyclerView.LayoutManager ChatListLayoutManager;
 
@@ -36,6 +36,7 @@ public class MainHomeScreenActivity extends AppCompatActivity {
         Button Logout =findViewById(R.id.logout);
         final Button FindUser =findViewById(R.id.findUser);
 
+        //Go to userList Activity
         FindUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,38 +44,38 @@ public class MainHomeScreenActivity extends AppCompatActivity {
             }
         });
 
-
+        //Logout button which logs out of the application to the login screen
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);//change activities
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //Kill Activity on top, return to previous activity
                 startActivity(intent);
-                finish();
+                finish();//remove from starting again
                 return;
             }
         });
 
         getContactsPermissions();
-        StartRecyclerView();
+        StartRecyclerView(); //Starts recycler view to populate chat list
         getChatList();
 
     }
 
 
-
+    //Gets perms from users to view contacts
     private void getContactsPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS}, 1);
         }
     }
     private void StartRecyclerView() {
-        Chat_List = findViewById(R.id.chats);
-        Chat_List.setNestedScrollingEnabled(false);
-        Chat_List.setHasFixedSize(false);
+        Chat_List = findViewById(R.id.chats);  //chatlist id from the layout
+        Chat_List.setNestedScrollingEnabled(false); //self explanatory
+        Chat_List.setHasFixedSize(false);   //self explanatory
         ChatListLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL , false);
-        Chat_List.setLayoutManager(ChatListLayoutManager);
+        Chat_List.setLayoutManager(ChatListLayoutManager); //set the layout of the contents in recycler view
         Chat_List_Adapter = new ChatListAdapter(chatList);
         Chat_List.setAdapter(Chat_List_Adapter);
     }

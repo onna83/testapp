@@ -30,6 +30,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
         return recyclerView;
     }
 
+    //Populate recycler view as its scrolled with more items
     @Override
     public void onBindViewHolder(@NonNull final ChatListViewHolder holder, final int position) {
         holder._Title.setText(ChatList.get(position).getChatID());
