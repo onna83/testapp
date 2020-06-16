@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="#363636">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/primaryDarkColor">
+
     <ImageView
-        android:layout_centerInParent="true"
-        android:layout_width="248dp"
-        android:layout_height="248dp"
-        android:src="@drawable/logo"
-        android:id="@+id/logo"/>
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="VisionX"
-        android:textSize="45dp"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/lato"
+        android:textSize="45sp"
+        android:textColor="#FFFFFF" />
+</LinearLayout>

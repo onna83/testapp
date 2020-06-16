@@ -6,22 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:weightSum="2"
     android:background="@color/primaryDarkColor"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:src="@drawable/logo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lato"
-        android:text="Sign Up"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato"
+            android:text="Sign Up"
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.15"
+        android:gravity="center"
+        android:orientation="vertical">
 
     <EditText
         android:layout_width="match_parent"
@@ -29,7 +45,6 @@
         android:background="@drawable/bg_ed"
         android:hint="Enter Phone Number"
         android:id="@+id/PhoneNumber"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:paddingStart="24dp"
@@ -89,4 +104,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </LinearLayout>
