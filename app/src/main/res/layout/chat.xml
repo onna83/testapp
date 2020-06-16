@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primaryDarkColor"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp"
     android:id="@+id/layout">
     <TextView
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
+        android:fontFamily="@font/lato"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         android:id="@+id/title"/>
 </LinearLayout>
