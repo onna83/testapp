@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FindUserActivity"
-    android:background="@color/primaryDarkColor"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:text="Contacts"
-        android:padding="16dp"
+        android:padding="15dp"
         android:gravity="center"
         android:background="@drawable/bg_heading_primary"
         android:fontFamily="@font/lato"

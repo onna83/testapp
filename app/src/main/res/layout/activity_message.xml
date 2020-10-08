@@ -7,7 +7,7 @@
     android:paddingEnd="8dp"
     android:paddingBottom="2dp"
     android:paddingTop="2dp"
-    android:background="@color/primaryDarkColor">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,24 +15,26 @@
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="8dp">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:text="Message"
-            android:id="@+id/message"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryDarkColor"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
             android:text="Sender"
             android:id="@+id/sender"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/lato"
+            android:textColor="@color/primaryDarkColor"
+            android:textSize="18sp"
+            android:text="Message"
+            android:id="@+id/message"/>
+
 
         <View
             android:layout_width="wrap_content"

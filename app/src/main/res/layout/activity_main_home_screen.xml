@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDarkColor"
+    android:background="@color/white"
     tools:context=".MainHomeScreenActivity"
     android:orientation="vertical">
     <LinearLayout
@@ -13,16 +13,18 @@
         android:layout_weight="1"
         android:orientation="vertical">
     <TextView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="left"
+            android:layout_width="320px"
             android:layout_height="wrap_content"
             android:text="Chats"
-            android:padding="16dp"
-            android:gravity="center"
-            android:background="@drawable/bg_heading_primary"
+            android:padding="13dp"
+            android:gravity="left"
             android:fontFamily="@font/lato"
             android:textSize="34sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+        android:background="@drawable/bg_circle_primary"/>
         <androidx.recyclerview.widget.RecyclerView
             android:padding="20dp"
             android:layout_marginTop="8dp"
@@ -44,9 +46,11 @@
             android:layout_height="wrap_content"
             android:text="Logout"
             android:layout_margin="4dp"
-            android:background="@drawable/bg_btn_primary"
+            android:background="@drawable/bg_circle_primary"
             android:textColor="@color/white"
-            android:id="@+id/logout"/>
+            android:id="@+id/logout"
+
+            />
 
         <Button
             android:layout_weight="1"
@@ -54,7 +58,7 @@
             android:layout_margin="4dp"
             android:id="@+id/findUser"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_primary"
+            android:background="@drawable/bg_circle_primary"
             android:textColor="@color/white"
             android:text="Find User"/>
 

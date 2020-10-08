@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:weightSum="2"
-    android:background="@color/primaryDarkColor"
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <LinearLayout
@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/Logo"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/lato"
             android:text="Sign Up"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryDarkColor"
             android:textSize="36sp" />
 
     </LinearLayout>
