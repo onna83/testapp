@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(!dataSnapshot.exists()){
                                     Map<String, Object> usrMap = new HashMap<>(); //saving user info against userId in database
-                                    usrMap.put("name",user.getPhoneNumber());
+                                    usrMap.put("name",user.getDisplayName());
                                     usrMap.put("phone",user.getPhoneNumber());
                                     UserDB.updateChildren(usrMap);//update database info under user tree
                                 }

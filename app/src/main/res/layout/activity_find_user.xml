@@ -9,17 +9,20 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:text="Contacts"
         android:padding="15dp"
         android:gravity="center"
-        android:background="@drawable/bg_heading_primary"
+        android:background="@drawable/bg_circle_primary"
         android:fontFamily="@font/lato"
         android:textSize="34sp"
         android:textColor="@color/white"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"

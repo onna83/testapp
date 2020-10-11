@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:contentPadding="16dp"
     app:cardElevation="2dp"
     android:layout_margin="8dp"
+    android:layout_marginBottom="10dp"
     android:paddingBottom="5dp"
-    app:cardBackgroundColor="@color/white_smoke"
-    app:cardCornerRadius="35dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="0dp"
     >
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout">
+        android:id="@+id/layout"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_usr_small"
+                android:layout_marginRight="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/primaryDarkColor"
+                android:id="@+id/name"/>
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textStyle="bold"
-            android:textSize="24sp"
             android:fontFamily="@font/lato"
-            android:textColor="@color/white"
-            android:id="@+id/name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryDarkColor"
             android:text="+00 000 000 000"
             android:gravity="end"
             android:textSize="20sp"

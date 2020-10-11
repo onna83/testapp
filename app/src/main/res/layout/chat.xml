@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
     android:paddingBottom="2dp"
     android:paddingTop="2dp"
-    android:id="@+id/layout">
+    android:id="@+id/layout"
+
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+    <ImageView
+        android:padding="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ico_usr"/>
     <TextView
         android:padding="10dp"
         android:layout_width="match_parent"
