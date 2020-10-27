@@ -11,7 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +40,8 @@ public class ChatActivity extends AppCompatActivity {
     ArrayList<String> mediaIDs=new ArrayList<>();
     int mediaIterator =0;
     EditText Message;
-
     String chatID;
+    CheckBox Translate;
     DatabaseReference DBmessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class ChatActivity extends AppCompatActivity {
         chatID= getIntent().getExtras().getString("chatID");
         Button addMedia =findViewById(R.id.addMedia);
         Button Send = findViewById(R.id.send);
+        Translate= findViewById(R.id.translate);
+
         DBmessage=  FirebaseDatabase.getInstance().getReference().child("chat").child(chatID);
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +69,12 @@ public class ChatActivity extends AppCompatActivity {
         StartMediaRecyclerView();
         getTextDB();
     }
+
+    public boolean flag=true;
+
+
+
+
 
     private void GALLERY() {
         Intent intent =new Intent();
@@ -97,10 +107,22 @@ public class ChatActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
                     String text = "";
+                    String morseTemp = "";
+                    String Morse = "";
                     String CreatorID="";
+
                     ArrayList<String> mediaURL_list=new ArrayList<>();
                     if(dataSnapshot.child("text").getValue() !=null){
-                        text= dataSnapshot.child("text").getValue().toString();
+                        //text= dataSnapshot.child("text").getValue().toString();
+
+                        if(flag){
+                            morseTemp=dataSnapshot.child("text").getValue().toString();
+                            Morse = TranslateText(morseTemp);
+                            text=Morse;
+                        }
+                        else{
+                            text= dataSnapshot.child("text").getValue().toString();
+                        }
                     }
                     if(dataSnapshot.child("creator").getValue() !=null){
                         CreatorID= dataSnapshot.child("creator").getValue().toString();
@@ -138,6 +160,33 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private String TranslateText(String morseTemp) {
+        String Morse=morseTemp;
+        char[] englishText = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+                'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                ',', '.', '?' };
+
+        String[] morseCode = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+                ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
+                "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----",
+                "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.",
+                "-----", "--..--", ".-.-.-", "..--.." };
+        Morse=Morse.toLowerCase();
+        char[] msgText = Morse.toCharArray();
+        String msgText_in_morse = " ";
+        for (int i = 0; i < msgText.length; i++){
+            for (int j = 0; j < englishText.length; j++){
+
+                if (msgText[i]==englishText[j]){
+                    msgText_in_morse = msgText_in_morse + morseCode[j] + " ";
+                }
+            }
+        }
+
+        return msgText_in_morse;
     }
 
     private void SEND_MESSAGE() {

@@ -58,6 +58,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public class  ChatViewHolder extends RecyclerView.ViewHolder{
         TextView _Message,_Sender;
         Button viewMedia;
+        //Button _Translate;
         public LinearLayout _Layout;
         public ChatViewHolder(View view){
             super(view);
@@ -65,6 +66,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             _Sender=view.findViewById(R.id.sender);
             _Layout = view.findViewById(R.id.layout);
             viewMedia=view.findViewById(R.id.viewMedia);
+           // _Translate=view.findViewById(R.id.translate);
         }
     }
 }

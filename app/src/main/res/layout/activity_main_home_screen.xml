@@ -39,28 +39,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:gravity="right">
+
         <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout"
             android:layout_margin="4dp"
             android:background="@drawable/bg_circle_primary"
             android:textColor="@color/white"
-            android:id="@+id/logout"
-
-            />
+            android:id="@+id/logout"/>
 
         <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_width="50dp"
             android:layout_margin="4dp"
             android:id="@+id/findUser"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_circle_primary"
             android:textColor="@color/white"
-            android:text="Find User"/>
+            android:text="+"
+            android:textSize="20dp"/>
+
 
     </LinearLayout>
 

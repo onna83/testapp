@@ -47,13 +47,27 @@
             android:alpha="0.5"
             android:layout_marginTop="8dp" />
     </LinearLayout>
-    <Button
-        android:layout_width="130dp"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Media"
-        android:padding="8dp"
-        android:background="@drawable/bg_btn_primary"
-        android:textColor="@color/white"
-        android:id="@+id/viewMedia"
-        android:layout_weight="0.2"/>
+        android:orientation="vertical">
+        <Button
+            android:layout_width="87dp"
+            android:layout_height="35dp"
+            android:text="View"
+            android:padding="8dp"
+            android:background="@drawable/bg_btn_primary"
+            android:textColor="@color/white"
+            android:id="@+id/viewMedia"
+            android:layout_weight="0.2"/>
+        <CheckBox
+            android:layout_marginTop="5dp"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Translate"
+            android:id="@+id/translate"/>
+    </LinearLayout>
+
 </LinearLayout>
