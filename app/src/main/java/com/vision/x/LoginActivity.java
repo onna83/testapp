@@ -29,16 +29,17 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText pNumber, code;
+    private EditText pNumber, code, pName;
     String verification_id;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks Callback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
         CheckLogIn();   //Check if user already logged in
         pNumber = findViewById(R.id.PhoneNumber);
+        pName = findViewById(R.id.Name);
         code = findViewById(R.id.Code);
         final Button verify = findViewById(R.id.Verify);
         verify.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(!dataSnapshot.exists()){
                                     Map<String, Object> usrMap = new HashMap<>(); //saving user info against userId in database
-                                    usrMap.put("name",user.getDisplayName());
+                                    usrMap.put("name",pName.getText().toString());
                                     usrMap.put("phone",user.getPhoneNumber());
                                     UserDB.updateChildren(usrMap);//update database info under user tree
                                 }

@@ -14,19 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Messages"
-            android:padding="13dp"
-            android:gravity="left"
-            android:fontFamily="@font/lato"
-            android:textSize="34sp"
-            android:textColor="@color/white"
-            android:background="@drawable/bg_circle_primary"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Messages"
+                android:padding="13dp"
+                android:gravity="left"
+                android:fontFamily="@font/lato"
+                android:textSize="34sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_circle_primary"/>
+
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

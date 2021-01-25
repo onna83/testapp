@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
                 String chatID = FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
                 FirebaseDatabase.getInstance().getReference().child("user").child(FirebaseAuth.getInstance().getUid()).child("chat").child(chatID).setValue(true);
                 FirebaseDatabase.getInstance().getReference().child("user").child(userList.get(position).getUserID()).child("chat").child(chatID).setValue(true);
-
+                Intent intent =new Intent(v.getContext(), MainHomeScreenActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }

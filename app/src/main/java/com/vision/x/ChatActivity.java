@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class ChatActivity extends AppCompatActivity {
     int mediaIterator =0;
     EditText Message;
     String chatID;
-    CheckBox Translate;
+    //CheckBox Translate;
     DatabaseReference DBmessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,6 @@ public class ChatActivity extends AppCompatActivity {
         chatID= getIntent().getExtras().getString("chatID");
         Button addMedia =findViewById(R.id.addMedia);
         Button Send = findViewById(R.id.send);
-        Translate= findViewById(R.id.translate);
 
         DBmessage=  FirebaseDatabase.getInstance().getReference().child("chat").child(chatID);
         Send.setOnClickListener(new View.OnClickListener() {
@@ -65,17 +65,10 @@ public class ChatActivity extends AppCompatActivity {
                 GALLERY();
             }
         });
+
         StartMessageRecyclerView();
-        StartMediaRecyclerView();
         getTextDB();
     }
-
-    public boolean flag=true;
-
-
-
-
-
     private void GALLERY() {
         Intent intent =new Intent();
         intent.setType("image/*");
@@ -101,28 +94,19 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+
     private void getTextDB() {
         DBmessage.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
                     String text = "";
-                    String morseTemp = "";
-                    String Morse = "";
                     String CreatorID="";
+
 
                     ArrayList<String> mediaURL_list=new ArrayList<>();
                     if(dataSnapshot.child("text").getValue() !=null){
-                        //text= dataSnapshot.child("text").getValue().toString();
-
-                        if(flag){
-                            morseTemp=dataSnapshot.child("text").getValue().toString();
-                            Morse = TranslateText(morseTemp);
-                            text=Morse;
-                        }
-                        else{
-                            text= dataSnapshot.child("text").getValue().toString();
-                        }
+                        text= dataSnapshot.child("text").getValue().toString();
                     }
                     if(dataSnapshot.child("creator").getValue() !=null){
                         CreatorID= dataSnapshot.child("creator").getValue().toString();
@@ -162,35 +146,9 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private String TranslateText(String morseTemp) {
-        String Morse=morseTemp;
-        char[] englishText = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-                'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                ',', '.', '?' };
 
-        String[] morseCode = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
-                ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
-                "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----",
-                "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.",
-                "-----", "--..--", ".-.-.-", "..--.." };
-        Morse=Morse.toLowerCase();
-        char[] msgText = Morse.toCharArray();
-        String msgText_in_morse = " ";
-        for (int i = 0; i < msgText.length; i++){
-            for (int j = 0; j < englishText.length; j++){
-
-                if (msgText[i]==englishText[j]){
-                    msgText_in_morse = msgText_in_morse + morseCode[j] + " ";
-                }
-            }
-        }
-
-        return msgText_in_morse;
-    }
 
     private void SEND_MESSAGE() {
-
         Message = findViewById(R.id.messageL);
         String msgID=DBmessage.push().getKey();
         final DatabaseReference newMessage = DBmessage.child(msgID);
@@ -232,11 +190,10 @@ public class ChatActivity extends AppCompatActivity {
                     Message.setText(null);
                     mediaURIList.clear();
                     mediaIDs.clear();
-                    MediaAdapter.notifyDataSetChanged();
+                    //MediaAdapter.notifyDataSetChanged();
                 }
             }
         }
-
 
 
 
